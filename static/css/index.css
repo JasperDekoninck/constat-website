@@ -27,9 +27,88 @@ body {
   font-family: 'Google Sans', sans-serif;
 }
 
+.logo {
+  height: 1.8em;
+  margin-bottom: -0.4em;
+}
 
 .publication-title {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 2.9rem !important;
 }
+
+.caption {
+  font-weight: bold;
+  margin: 20px 6% 35px 6%; 
+  padding: 0 0 0 2%;
+  border-left: thick solid #8c8b8d;
+}
+
+.tldr {
+  font-size: 1.9rem;
+}
+
+table.dataTable thead {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+table.dataTable tbody tr {
+  transition: background-color 0.3s;
+}
+
+table.dataTable tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+table.dataTable thead th, table.dataTable tbody td {
+  padding: 12px 15px;
+}
+
+table.dataTable thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-info-box {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  font-size: 1.3rem;
+  text-align: justify;
+}
+/* Style the search bar */
+
+/* Style the pagination */
+div.dt-container .dt-paging .dt-paging-button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 1.5em;
+  padding: .5em 1em;
+  margin-left: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  color: #007bff !important;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background: transparent;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+  background-color: #007bff;
+  color: white !important;
+}
+
+div.dt-container .dt-paging .current {
+  background-color: #007bff;
+  color: white !important;
+  border: 1px solid #007bff;
+}
+
 
 .publication-banner {
   max-height: parent;
@@ -47,10 +126,6 @@ body {
 .publication-header .hero-body {
 }
 
-.publication-title {
-    font-family: 'Google Sans', sans-serif;
-}
-
 .publication-authors {
     font-family: 'Google Sans', sans-serif;
 }
@@ -65,9 +140,6 @@ body {
     color: #ff3860;
     width: fit-content;
     font-weight: bolder;
-}
-
-.publication-authors {
 }
 
 .publication-authors a {
