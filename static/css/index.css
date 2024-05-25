@@ -205,8 +205,14 @@ div.dt-container .dt-paging .current {
   font-size: smaller;
 }
 
-@media only screen and (max-width: 600px) {
-  #myTable {
-      font-size: 10px;
+@media (max-width: 600px) {
+  .dt-container, .dt-container .dt-paging .dt-paging-button {
+      font-size: 9px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dt-container, .dt-container .dt-paging .dt-paging-button {
+      font-size: 12px;
   }
 }

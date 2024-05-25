@@ -531,7 +531,7 @@ $(document).ready(function() {
 	
     bulmaSlider.attach();
 
-	$('#myTable').DataTable({
+	let table2 = $('#myTable').DataTable({
 		"data": tableData,
 		"columns": [
 			{ "data": "Model Name" },
@@ -546,6 +546,7 @@ $(document).ready(function() {
 		"order": [],
 		"lengthChange": false,
 		"autoWidth": false,
+		"scrollX": true,
 		"info": false,  // Disable the info text
 		"createdRow": function( row, data, dataIndex ) {
 			var pValue = parseFloat(data["p-value"]);
@@ -605,7 +606,7 @@ $(document).ready(function() {
 
 		]
 
-	$('#myTopTable').DataTable({
+	let table1 = $('#myTopTable').DataTable({
 		"data": p_values_data,
 		"columns": [
 	        { "data": "Model Name" },
@@ -625,6 +626,7 @@ $(document).ready(function() {
 		"order": [],
 		"lengthChange": false,
 		"autoWidth": false,
+		"scrollX": true,
 		"info": false,  // Disable the info text
 		"columnDefs": [
 			{
@@ -637,6 +639,16 @@ $(document).ready(function() {
 			}
 		],
 	});
+
+	// Initial call to round numbers based on the current screen size
+    // roundNumbers(table1);
+	// roundNumbers(table2);
+
+    // // Re-round numbers when window is resized
+    // $(window).resize(function() {
+    //     roundNumbers(table1);
+	// 	roundNumbers(table2);
+    // });
 
 		
 })
@@ -652,4 +664,22 @@ function getColor(pValue) {
 		red = 255;
 	}
 	return 'rgba(' + red + ',' + green + ',0,0.2)';
+}
+
+function roundNumbers(table) {
+	if ($(window).width() < 900) {
+		table.cells().every(function() {
+			var data = this.data();
+			if ($.isNumeric(data)) {
+				this.data(parseFloat(data).toFixed(1)).draw(false);
+			}
+		});
+	} else {
+		table.cells().every(function() {
+			var data = this.data();
+			if ($.isNumeric(data)) {
+				this.data(parseFloat(data).toFixed(2)).draw(false);
+			}
+		});
+	}
 }
