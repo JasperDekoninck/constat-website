@@ -531,7 +531,7 @@ $(document).ready(function() {
 	
     bulmaSlider.attach();
 
-	let table2 = $('#myTable').DataTable({
+	var table_here = $('#myTable').DataTable({
 		"data": tableData,
 		"columns": [
 			{ "data": "Model Name" },
@@ -542,10 +542,13 @@ $(document).ready(function() {
 			{ "data": "delta" },
 			{ "data": "delta_095"}
 		],
+		"columnDefs": [
+            { width: '20%', targets: 0 }
+        ],
 		"pageLength": 11,
 		"order": [],
+		"fixedColumns": true,
 		"lengthChange": false,
-		"autoWidth": false,
 		"scrollX": true,
 		"info": false,  // Disable the info text
 		"createdRow": function( row, data, dataIndex ) {
@@ -554,7 +557,6 @@ $(document).ready(function() {
 			$(row).css('background-color', color);
 		},
 	});
-
 
 	var p_values_data = [
 		{'Model Name': 'Mistral-7B-v0.1', 'arc_Benchmark': 95.01, 'arc_Sample': 7.91, 'arc_Syntax': 28.07, 'gsm8k_Benchmark': 87.59, 'gsm8k_Sample': 0.15, 'gsm8k_Syntax': 66.44, 'hellaswag_Benchmark': 65.34, 'hellaswag_Sample': 0.24, 'hellaswag_Syntax': 16.97, 'mmlu_Sample': 15.23, 'mmlu_Syntax': 11.08, },
@@ -606,7 +608,7 @@ $(document).ready(function() {
 
 		]
 
-	let table1 = $('#myTopTable').DataTable({
+	var table = $('#myTopTable').DataTable({
 		"data": p_values_data,
 		"columns": [
 	        { "data": "Model Name" },
@@ -624,9 +626,9 @@ $(document).ready(function() {
 	    ],
 		"pageLength": 10,
 		"order": [],
-		"lengthChange": false,
-		"autoWidth": false,
+		"fixedColumns": true,
 		"scrollX": true,
+		"lengthChange": false,
 		"info": false,  // Disable the info text
 		"columnDefs": [
 			{
@@ -636,21 +638,12 @@ $(document).ready(function() {
 					var color = getColor(pValue);
 					$(td).css('background-color', color);
 				}
-			}
+			},
+			{ width: '20%', targets: 0 }
 		],
 	});
-
-	// Initial call to round numbers based on the current screen size
-    // roundNumbers(table1);
-	// roundNumbers(table2);
-
-    // // Re-round numbers when window is resized
-    // $(window).resize(function() {
-    //     roundNumbers(table1);
-	// 	roundNumbers(table2);
-    // });
-
-		
+	table.columns.adjust().draw();
+	table_here.columns.adjust().draw();
 })
 
 function getColor(pValue) {
@@ -664,22 +657,4 @@ function getColor(pValue) {
 		red = 255;
 	}
 	return 'rgba(' + red + ',' + green + ',0,0.2)';
-}
-
-function roundNumbers(table) {
-	if ($(window).width() < 900) {
-		table.cells().every(function() {
-			var data = this.data();
-			if ($.isNumeric(data)) {
-				this.data(parseFloat(data).toFixed(1)).draw(false);
-			}
-		});
-	} else {
-		table.cells().every(function() {
-			var data = this.data();
-			if ($.isNumeric(data)) {
-				this.data(parseFloat(data).toFixed(2)).draw(false);
-			}
-		});
-	}
 }
