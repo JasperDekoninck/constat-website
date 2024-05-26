@@ -205,6 +205,12 @@ div.dt-container .dt-paging .current {
   font-size: smaller;
 }
 
+@media (max-width: 900px) {
+  .dt-container, .dt-container .dt-paging .dt-paging-button {
+      font-size: 12px;
+  }
+}
+
 #tableModels {
   margin-top: -6rem !important;
 }
